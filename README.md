@@ -16,3 +16,7 @@ Projeto feito em Laravel/Framework para fins de aprendizado e treinamento usando
 * Use o comando `php artisan storage:link` para criar um link simbólico para as imagens.
 * Use o comando `php artisan serve` para rodar em seu servidor.
 * Navegue para `http://127.0.0.1:8000/`. O aplicativo será carregado automaticamente.
+
+#### Observações:
+* Ao propagar o banco ele já vem com usuários cadastrados.
+* Não foquei no front-end pois não foi o meu foco (por isso tá mais feio que eu esse visual ai kkkk).
