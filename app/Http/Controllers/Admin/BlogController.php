@@ -11,6 +11,11 @@ class BlogController extends Controller
     {
         $data = Post::latest()->paginate(4);
 
-        return view('blog', compact('data'));
+        return view('blog.index', compact('data'));
+    }
+
+    public function show(Post $post)
+    {
+        return view('blog.more', ['post' => $post]);
     }
 }

@@ -24,7 +24,8 @@
                                 <img src="{{ asset("storage/$post->image") }}" class="card-img-top" alt="{{ $post->title }}" style="height: 320px;">
                                 <div class="card-body">
                                     <h3 class="card-title">{{ $post->title }}</h3>
-                                    <a href="{{ route('posts.show', $post->id) }}" class="btn btn-success">Vizualizar Completo</a>
+                                <p class="card-text">{{ $post->description }}</p>
+                                    <a href="{{ route('blog.show', $post->id) }}" class="btn btn-success">Vizualizar Completo</a>
                                 </div>
                             </div>
                             <br>

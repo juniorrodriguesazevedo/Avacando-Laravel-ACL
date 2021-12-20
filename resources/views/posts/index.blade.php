@@ -22,6 +22,9 @@
                     <table class="table table-striped">
                         <thead class="thead-dark">
                           <tr>
+                              @if (!auth()->user()->hasRole('Author'))
+                                  <th scope="col">Autor</th>
+                              @endif
                             <th scope="col">Título</th>
                             <th scope="col">Slug</th>
                             <th scope="col">Status</th>
@@ -31,6 +34,9 @@
                         <tbody>
                             @foreach ($data as $post)
                             <tr>
+                                @if (!auth()->user()->hasRole('Author'))
+                                    <td>{{ $post->author->name }}</td>
+                                @endif
                               <td>{{ $post->title }}</td>
                               <td>{{ $post->slug }}</td>
                               <td>{{ $post->status }}</td>

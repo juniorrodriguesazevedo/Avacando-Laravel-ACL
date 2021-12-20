@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Post;
 use Illuminate\Support\Str;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Post\StorePostRequest;
 use App\Http\Requests\Post\UpdatePostRequest;
-use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -26,7 +26,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $data = Post::when(Auth::user()->hasRole('Author'), function ($query) {
+        $data = Post::with('author')->when(Auth::user()->hasRole('Author'), function ($query) {
             $query->where('user_id', Auth::id());
         })->paginate(10);
 
@@ -53,12 +53,6 @@ class PostController extends Controller
     {
         $data = $request->validated();
 
-        $file_name = $data['title'] . '.' . $data['image']->extension();
-        $data['image'] = $data['image']->storeAs('posts', $file_name, 'public');
-
-        $data['user_id'] = Auth::id();
-        $data['slug'] = Str::slug($data['title'], '-');
-
         Post::create($data);
 
         return redirect()->route('posts.index')
@@ -74,6 +68,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
+        $this->authorize('view', $post);
 
         return view('posts.show', compact('post'));
     }
@@ -103,14 +98,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $data = $request->validated();
-
-        if ($request->hasFile('image')) {
-            $file_name = $data['title'] . '.' . $data['image']->extension();
-            Storage::delete(storage_path("app/public/$post->image"));
-            $data['image'] = $data['image']->storeAs('posts', $file_name, 'public');
-        }
-
-        $data['slug'] = Str::slug($data['title'], '-');
+        $this->authorize('update', $post);
 
         $post->update($data);
 

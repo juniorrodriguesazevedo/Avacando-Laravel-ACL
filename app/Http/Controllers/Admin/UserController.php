@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\StoreUserResquest;
 use App\Http\Requests\User\UpdateUserResquest;
-use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {

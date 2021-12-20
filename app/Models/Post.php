@@ -11,9 +11,16 @@ class Post extends Model
 
     protected $fillable = ['user_id', 'slug', 'title', 'content', 'status', 'image'];
 
+    protected $appends = ['description'];
+
     public function setTitleAttribute($value)
     {
         return $this->attributes['title'] = ucwords($value);
+    }
+    
+    public function getDescriptionAttribute()
+    {
+        return substr($this->attributes['content'], 0, 140);
     }
 
     public function getStatusAttribute($value)

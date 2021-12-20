@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Post;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StorePostRequest extends FormRequest
@@ -13,7 +14,11 @@ class StorePostRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        if (Auth::check() && Auth::user()->hasPermissionTo('post_create')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

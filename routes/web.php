@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\PostController;
 
 Route::get('/', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/post/{post}', [BlogController::class, 'show'])->name('blog.show');
 
 Auth::routes();
 
