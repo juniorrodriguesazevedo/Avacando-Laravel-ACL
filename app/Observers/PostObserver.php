@@ -20,7 +20,7 @@ class PostObserver
         $post->slug = Str::slug($post->title, '-');
         $post->user_id = Auth::id();
 
-        $file_name = $post['title'] . '.' . $post['image']->extension();
+        $file_name = $post->slug . '.' . $post['image']->extension();
         $post['image'] = $post['image']->storeAs('posts', $file_name, 'public');
     }
 
@@ -38,7 +38,7 @@ class PostObserver
 
         if ($post->image) {
             Storage::delete("public/$image_delete");
-            $file_name = $post['title'] . '.' . $post['image']->extension();
+            $file_name = $post->slug . '.' . $post['image']->extension();
             $post['image'] = $post['image']->storeAs('posts', $file_name, 'public');
         }
     }
