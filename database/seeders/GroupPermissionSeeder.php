@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 
-class RoleHasPermissionSeeder extends Seeder
+class GroupPermissionSeeder extends Seeder
 {
     /**
      * Run the database seeds.

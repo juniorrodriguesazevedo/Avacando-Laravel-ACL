@@ -17,6 +17,11 @@ class Post extends Model
     {
         return $this->attributes['title'] = ucwords($value);
     }
+
+    public function setContentAttribute($value)
+    {
+        return $this->attributes['content'] = ucfirst($value);
+    }
     
     public function getDescriptionAttribute()
     {

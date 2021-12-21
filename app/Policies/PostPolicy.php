@@ -30,7 +30,7 @@ class PostPolicy
      */
     public function view(User $user, Post $post)
     {
-        return $user->hasRole('Author') && $user->id == $post->user_id ? true : $user->hasRole(['Admin']);
+        return $user->hasRole('Author') && $user->id == $post->user_id ? true : $user->hasRole(['Super Admin', 'Admin']);
     }
 
     /**
@@ -53,7 +53,7 @@ class PostPolicy
      */
     public function update(User $user, Post $post)
     {
-        return $user->hasRole('Author') && $user->id == $post->user_id ? true : $user->hasRole(['Admin']);
+        return $user->hasRole('Author') && $user->id == $post->user_id ? true : $user->hasRole(['Super Admin', 'Admin']);
     }
 
     /**
@@ -65,7 +65,7 @@ class PostPolicy
      */
     public function delete(User $user, Post $post)
     {
-        return $user->hasRole('Author') && $user->id == $post->user_id ? true : $user->hasRole(['Admin']);
+        return $user->hasRole('Author') && $user->id == $post->user_id ? true : $user->hasRole(['Super Admin', 'Admin']);
     }
 
     /**

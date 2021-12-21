@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\RoleController;
 
 Route::get('/', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/post/{post}', [BlogController::class, 'show'])->name('blog.show');
@@ -18,6 +19,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
 
     Route::resources([
         'users' => UserController::class,
-        'posts' => PostController::class
+        'posts' => PostController::class,
+        'roles' => RoleController::class
     ]);
 });

@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Spatie\Permission\Models\Role;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Permission;
 use App\Http\Requests\User\StoreUserResquest;
 use App\Http\Requests\User\UpdateUserResquest;
 
@@ -119,12 +120,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $user = User::findOrFail($id);
+        $data = $user->load('roles');
+        $role = $data->roles->first()->name;
         $this->authorize('delete', $user);
 
-        $user->removeRole(Role::all());
+        $user->removeRole($role);
+        $user->revokePermissionTo(Permission::all());
+
         $user->delete();
 
         return redirect()->route('users.index')

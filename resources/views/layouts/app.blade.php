@@ -25,11 +25,14 @@
             <div class="container">
                 <a class="navbar-brand" href="{{ route('blog.index') }}">Blog</a>
                 @can('user_view')
-                    <a class="navbar-brand" href="{{ route('users.index') }}">Users</a>
+                    <a class="navbar-brand" href="{{ route('users.index') }}">Usuários</a>
                 @endcan
                 @can('post_view')
                     <a class="navbar-brand" href="{{ route('posts.index') }}">Posts</a>
                 @endcan
+                @if (auth()->check() && auth()->user()->hasRole('Super Admin'))
+                    <a class="navbar-brand" href="{{ route('roles.index') }}">Funções</a>
+                @endif
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

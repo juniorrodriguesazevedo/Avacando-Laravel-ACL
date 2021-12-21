@@ -14,7 +14,7 @@ class UpdatePostRequest extends FormRequest
      */
     public function authorize()
     {
-        if (Auth::check() && Auth::user()->hasPermissionTo('post_edit')) {
+        if (Auth::check() && Auth::user()->hasPermissionTo('post_edit') || Auth::user()->hasRole('Super Admin')) {
             return true;
         }
 

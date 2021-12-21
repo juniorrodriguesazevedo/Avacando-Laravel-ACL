@@ -14,7 +14,7 @@ class StorePostRequest extends FormRequest
      */
     public function authorize()
     {
-        if (Auth::check() && Auth::user()->hasPermissionTo('post_create')) {
+        if (Auth::check() && Auth::user()->hasPermissionTo('post_create') || Auth::user()->hasRole('Super Admin')) {
             return true;
         }
 

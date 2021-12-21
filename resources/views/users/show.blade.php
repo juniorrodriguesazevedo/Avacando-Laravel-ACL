@@ -19,6 +19,12 @@
                     <strong>Nome: </strong> {{ $user->name }} <br>
                     <strong>Email: </strong> {{ $user->email }} <br>
                     <strong>Função: </strong> {{ $user->roles->first()->name }} <br>
+
+                    <br>
+                    {!!Form::open()->method('delete')->route('users.destroy', [$user->id])!!}
+                        {!!Form::submit('Deletar Usuário', 'danger')!!}
+                    {!!Form::close()!!}
+
                 </div>
             </div>
         </div>

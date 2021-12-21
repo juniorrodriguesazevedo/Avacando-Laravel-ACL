@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\User;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateUserResquest extends FormRequest
@@ -13,7 +14,11 @@ class UpdateUserResquest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        if (Auth::check() && Auth::user()->hasPermissionTo('user_edit') || Auth::user()->hasRole('Super Admin')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
