@@ -13,5 +13,6 @@
     </div>
     <div class="col-6 mt-3">
         {!!Form::submit("Cadastrar", "success")!!}
+        <a class="btn btn-primary" href="{{ route('users.index') }}">Voltar</a>
     </div>
 </div>

@@ -6,7 +6,8 @@
         <div class="col-md-10">
             <div class="card">
                 <div class="card-header">
-                    <h3>Funções</h3>
+                    <h3>Permissões</h3>
+                    <a class="btn btn-success" href="{{ route('permissions.create') }}">Cadastrar</a>
                 </div>
                 
                 <div class="card-body">
@@ -20,20 +21,22 @@
                         <thead class="thead-dark">
                           <tr>
                             <th scope="col">Nome</th>
-                            <th scope="col" style="width: 170px">Opções</th>
+                            <th scope="col" style="width: 90px">Opções</th>
                           </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $role)
+                            @foreach ($data as $permission)
                             <tr>
-                             <td>{{ $role->name }}</td>
+                             <td>{{ $permission->name }}</td>
                               <td>
-                                <a class="btn btn-primary" href="{{ route('roles.edit', $role->id) }}">Editar Permissões</a>
+                                <a class="btn btn-primary" href="{{ route('permissions.edit', $permission->id) }}">Editar</a>
                               </td>
                             </tr>
                             @endforeach    
                         </tbody>
                     </table>
+
+                    {{ $data->links() }}
                 </div>
 
             </div>

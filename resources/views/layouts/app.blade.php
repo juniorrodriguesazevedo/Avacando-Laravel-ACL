@@ -33,6 +33,9 @@
                 @if (auth()->check() && auth()->user()->hasRole('Super Admin'))
                     <a class="navbar-brand" href="{{ route('roles.index') }}">Funções</a>
                 @endif
+                @if (auth()->check() && auth()->user()->hasRole('Super Admin'))
+                    <a class="navbar-brand" href="{{ route('permissions.index') }}">Permissões</a>
+                @endif
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

@@ -13,5 +13,6 @@
     </div>
     <div class="col-6 mt-4">
         {!!Form::submit("Salvar", "success")!!}
+        <a class="btn btn-primary" href="{{ route('posts.index') }}">Voltar</a>
     </div>
 </div>

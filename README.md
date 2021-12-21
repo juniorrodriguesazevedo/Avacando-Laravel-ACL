@@ -20,3 +20,10 @@ Projeto feito em Laravel/Framework para fins de aprendizado e treinamento usando
 #### Observações:
 * Ao propagar o banco ele já vem com usuários cadastrados.
 * Não foquei no front-end pois não foi o meu foco (por isso tá mais feio que eu esse visual ai kkkk).
+
+Tipo   | Email | Senha
+:--------- | :------ | :------
+Super Admin | superadmin@gmail.com | 123
+Admin | admin@gmail.com | 123
+Author | author@gmail.com | 123
+User | user@gmail.com | 123
